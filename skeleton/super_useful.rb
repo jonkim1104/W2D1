@@ -1,7 +1,10 @@
 # PHASE 2
 def convert_to_int(str)
-  Integer(str)
+    Integer(str)
+  rescue ArgumentError 
+  nil 
 end
+
 
 # PHASE 3
 FRUITS = ["apple", "banana", "orange"]
@@ -16,11 +19,22 @@ end
 
 def feed_me_a_fruit
   puts "Hello, I am a friendly monster. :)"
-
+  begin 
   puts "Feed me a fruit! (Enter the name of a fruit:)"
   maybe_fruit = gets.chomp
-  reaction(maybe_fruit) 
+  reaction(maybe_fruit)
+  rescue StandardError 
+  puts "invalid fruit, you can try again if you give me coffee:"
+  coffee = gets.chomp 
+  if coffee == "coffee"
+    retry 
+  end 
+  
+  end 
+
 end  
+
+#feed_me_a_fruit
 
 # PHASE 4
 class BestFriend
@@ -28,6 +42,13 @@ class BestFriend
     @name = name
     @yrs_known = yrs_known
     @fav_pastime = fav_pastime
+    if yrs_known <= 5 
+      raise "We werent friend long enough"
+    elsif name.empty? 
+      raise "please enter your name"
+    elsif fav_pastime.empty?
+      raise "please enter your favorite pastime"
+    end 
   end
 
   def talk_about_friendship
@@ -43,4 +64,6 @@ class BestFriend
   end
 end
 
-
+if $PROGRAM_NAME == __FILE__
+  dude = BestFriend.new("Jon",8,"basketball")
+end
