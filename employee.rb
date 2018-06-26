@@ -26,7 +26,7 @@ end
 class Manager < Employee  
   attr_reader :employees 
   def initialize(name, title, salary, boss, employees)
-    super(name, title, salary, boss)
+      super(name, title, salary, boss)
     @employees = employees
     
   end 
@@ -41,5 +41,5 @@ if $PROGRAM_NAME == __FILE__
   
   p ned.bonus(5)
   
-end 
+end  
 
