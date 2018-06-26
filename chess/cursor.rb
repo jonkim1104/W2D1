@@ -91,7 +91,16 @@ class Cursor
       Process.exit!(0)
     end 
   end
+  
+  def valid_pos?
+    @cursor_pos[0] = 0 if @cursor_pos[0] == -1
+    @cursor_pos[0] = 7 if @cursor_pos[0] == 8
+    @cursor_pos[-1] = 0 if @cursor_pos[-1] == -1
+    @cursor_pos[-1] = 7 if @cursor_pos[-1] == 8
+  end 
 
   def update_pos(diff)
+    @cursor_pos = [cursor_pos[0]+diff[0], cursor_pos[1]+diff[1]]
+    valid_pos?
   end
 end

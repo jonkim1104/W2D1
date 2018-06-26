@@ -1,9 +1,12 @@
+require_relative 'bishop'
+
 class Board
   attr_reader :rows
   
   def initialize
     @rows = Array.new(8, "piece"){Array.new(8, "piece")}
     #@sentinel = sentinel
+    populate 
   end 
   
   def move_piece(start_pos, end_pos) 
@@ -15,24 +18,34 @@ class Board
   end 
   
   def [](pos)
-    self.rows[pos.first][pos.last]
+    @rows[pos.first][pos.last]
   end 
   
   def []=(pos,val)
-    self.rows[pos.first][pos.last] = val 
+    @rows[pos.first][pos.last] = val 
   end
   
-  def populate
-     
+  def add_piece(pos, piece)
+    self[pos] = piece.symbol
   end 
+  
+  def valid_pos?
+    
+  end 
+
+  def populate 
+    bishop = Bishop.new(nil, nil, nil)
+    (0..7).each do |idx|
+      add_piece([7,idx], bishop)
+      add_piece([6,idx], bishop)
+    end 
+    
+  end 
+  
   
 end 
 
 if $PROGRAM_NAME == __FILE__
   chess = Board.new
-  chess.display
-  p "------"
-  chess.populate 
-  p "----"
-  chess.display 
+  p chess 
 end

@@ -7,12 +7,14 @@ class Piece
   end 
   
   def to_s 
+    self.symbol.to_s 
   end 
   
   def empty?
+    
   end 
   
-  def valid_mves
+  def valid_moves
   end 
   
   def pos=(val)
