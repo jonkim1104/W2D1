@@ -2,7 +2,7 @@ class Board
   attr_reader :rows
   
   def initialize
-    @rows = Array.new(8){Array.new(8)}
+    @rows = Array.new(8, "piece"){Array.new(8, "piece")}
     #@sentinel = sentinel
   end 
   
@@ -25,15 +25,6 @@ class Board
   def populate
      
   end 
-  
-  
-  
-  def display
-    self.rows.each do |row|
-      puts "#{row}\n"
-       #puts ---------------
-    end
-  end
   
 end 
 
