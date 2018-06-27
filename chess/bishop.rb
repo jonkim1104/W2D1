@@ -1,13 +1,17 @@
 require_relative "piece"
+require_relative "slidable"
 
 class Bishop < Piece 
+  include Slidable
+  
   attr_reader :color 
   def initialize(color, board, pos)
     super(color, board, pos)
     @move_dirs = []
     
   end
-
+  
+  
   
   def symbol 
     "  \u2657  ".encode('utf-8')
